@@ -48,4 +48,47 @@ We will evaluate your submission based on:
 
 ---
 
+## 🛠️ Step-by-Step Guide
+
+1. **Fork the repository**
+
+   - Click the **“Fork”** button on the top right of the GitHub page to create a copy under your own account.
+   - ✅ Yes — after forking, you still need to clone it locally to work on it.
+
+2. **Clone your forked repository**
+
+   Open your terminal and run:
+
+   ```bash
+   git clone https://github.com/<your-username>/qa-ecommerce-challenge.git
+
+
+3. **Navigate to the project folder**
+
+   ```bash
+   cd qa-ecommerce-challenge
+
+4. **Install project dependencies using Yarn**
+
+   ```bash
+   yarn
+
+5. **Start the web application**
+
+   ```bash
+   yarn start
+
+6. **Run the tests**
+
+   - To open Cypress in interactive mode:
+
+   ```bash
+   yarn cypress:open
+
+  - To run the test suite in headless mode:
+
+   ```bash
+   yarn test
+
+---
 Good luck! If you have any questions, feel free to reach out before starting the challenge.
