@@ -78,17 +78,13 @@ We will evaluate your submission based on:
    ```bash
    yarn start
 
-6. **Run the tests**
-
-   - To open Cypress in interactive mode:
-
+6. **Run test in intercative mode**
    ```bash
    yarn cypress:open
 
-  - To run the test suite in headless mode:
-
+7. **Run test in headless mode**
    ```bash
-   yarn test
+   yarn cypress run
 
 ---
 Good luck! If you have any questions, feel free to reach out before starting the challenge.
