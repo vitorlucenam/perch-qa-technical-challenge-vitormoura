@@ -10,7 +10,9 @@ module.exports = defineConfig({
     json: false,               
     embeddedScreenshots: true,
     inlineAssets: true,
-    charts: true
+    charts: true,
+    code: false,
+    showCode: false
   },
   e2e: {
     setupNodeEvents(on, config) {
