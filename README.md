@@ -64,7 +64,7 @@ This is an e-commerce web application where users can browse products, purchase 
    - Create a **public** fork in your GitHub account.
 
 2. **Work in a new branch**
-   - Create a **new branch** for your changes (e.g., `qa-challenge`).
+   - Create a **new branch** for your changes with your name as branch name (e.g., `name-surname`).
    - Do **not** commit directly to `main`.
 
 3. **Commit your work**
@@ -74,6 +74,7 @@ This is an e-commerce web application where users can browse products, purchase 
 4. **Create a Pull Request**
    - From your branch to your own `main` branch inside the **forked** repository.
    - This allows us to view the diff easily.
+   - Set your name as PR name (e.g., `name-surname`).
 
 5. **Notify us**
    - Send an email to our team confirming completion.
