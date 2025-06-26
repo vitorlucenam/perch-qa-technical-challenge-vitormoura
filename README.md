@@ -18,7 +18,7 @@ You are expected to complete this challenge using the following technologies:
 
 - ✅ Cypress  
 - ✅ Cucumber (Gherkin syntax)  
-- ✅ Javascript
+- ✅ JavaScript
 
 ---
 
