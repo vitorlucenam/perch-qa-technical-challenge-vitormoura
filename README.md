@@ -62,31 +62,37 @@ This is an e-commerce web application where users can browse products, purchase 
 
 ## 📋 Submission Instructions
 
-1. **DO NOT FORK this repository**  
+1. **Availability confirmation:**  
+   - Share the day you are available to complete the 24-hour challenge.
+
+2. **Challenge start:**  
+   - On the agreed day, we will share with you the URL of the GitHub repository that contains the base project.
+
+3. **DO NOT FORK this repository**  
    - Instead, **clone it** to your local machine:
 
      ```bash
-     git clone https://github.com/estefijmiceli89/qa-ecommerce-challenge.git
+     git clone https://github.com/estefaniaMiceliQA/perch-qa-technical-challenge
      ```
 
-2. **Create a new public repository in your own GitHub account**  
-   - Name it something like `qa-ecommerce-challenge-yourname`.  
+4. **Create a new public repository in your own GitHub account**  
+   - Name it something like `perch-qa-technical-challenge-yourname`.  
    - Push the cloned project and your changes there.
 
-3. **Work in a new branch**  
+5. **Work in a new branch**  
    - Create a **new branch** with your name (e.g., `name-surname`).  
    - Do **not** commit directly to `main`.
 
-4. **Commit your work**  
+6. **Commit your work**  
    - Add your test cases and all documentation.  
    - **You must include a `findings.md` file (in Markdown format) in the repository** to document any detected issues, bugs, or improvement suggestions.  
    - ⚠️ **Do not send issues or improvements in a separate document. Only `findings.md` inside the repo will be accepted.**
 
-5. **No Pull Request required**  
+7. **No Pull Request required**  
    - Keep all changes in your own public repository.  
    - Do **not** open a Pull Request to this repository.
 
-6. **Notify us**  
+8. **Notify us**  
    - Send an email to our team confirming completion.  
    - Include the **URL to your public repository** and the **branch name**.
 
@@ -108,13 +114,12 @@ We will evaluate your submission based on:
 1. **Clone the base repository**
 
    ```bash
-   git clone https://github.com/estefijmiceli89/qa-ecommerce-challenge.git
-   cd qa-ecommerce-challenge
+   git clone https://github.com/estefaniaMiceliQA/perch-qa-technical-challenge
    ```
 
 2. **Create your own public repository**
    
-   - On GitHub, create a new public repository under your account (do not initialize with README).
+   - On GitHub, create a new public repository under your account.
 
 3. **Push the project to your new repository**
 
