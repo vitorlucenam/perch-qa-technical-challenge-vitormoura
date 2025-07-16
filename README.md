@@ -88,7 +88,7 @@ This is an e-commerce web application where users can browse products, purchase 
    - **You must include a `findings.md` file (in Markdown format) in the repository** to document any detected issues, bugs, or improvement suggestions.  
    - ⚠️ **Do not send issues or improvements in a separate document. Only `findings.md` inside the repo will be accepted.**
 
-7. **No Pull Request required**  
+7. **DO NOT create a Pull Request into this repository**  
    - Keep all changes in your own public repository.  
    - Do **not** open a Pull Request to this repository.
 
