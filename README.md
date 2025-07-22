@@ -63,7 +63,7 @@ This is an e-commerce web application where users can browse products, purchase 
 ## 📋 Submission Instructions
 
 1. **Availability confirmation:**  
-   - Share the day you are available to complete the 24-hour challenge.
+   - Share the day you are available to start the 48-hour challenge.
 
 2. **Challenge start:**  
    - On the agreed day, we will share with you the URL of the GitHub repository that contains the base project.
