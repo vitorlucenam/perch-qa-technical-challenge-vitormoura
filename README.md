@@ -1,4 +1,4 @@
-# 🧪 QA Engineer – Technical Challenge (24h)
+# 🧪 QA Engineer – Technical Challenge (48h)
 
 Welcome! This is a technical challenge for QA Engineer candidates applying to **Perch**.
 
