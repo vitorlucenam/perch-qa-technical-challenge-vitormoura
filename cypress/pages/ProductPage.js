@@ -90,14 +90,14 @@ class ProductPage {
     }
 
     navigateToCart() {
-        // Navigate to cart via homepage navigation
-        cy.visit('/');
+        // Navigate to cart via back to products then cart navigation (proper UI flow)
+        this.elements.backToProductsBtn().click();
         this.elements.cartNavBtn().click();
     }
 
     navigateToCartViaIcon() {
-        // Navigate to cart via homepage navigation  
-        cy.visit('/');
+        // Navigate to cart via back to products then cart navigation (proper UI flow)
+        this.elements.backToProductsBtn().click();
         this.elements.cartNavBtn().click();
     }
 
