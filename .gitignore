@@ -27,7 +27,3 @@ yarn-error.log*
 build/
 dist/
 .cache/
-
-# other files
-debugscenarios.feature
-BUGS_FOUND.md
