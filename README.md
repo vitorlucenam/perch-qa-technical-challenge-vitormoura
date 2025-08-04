@@ -7,7 +7,7 @@ This repository contains a comprehensive test automation solution for an e-comme
 ## 📋 Quick Links
 
 - **📄 [Challenge Instructions](./CHALLENGE_INSTRUCTIONS.md)** - Original challenge requirements and setup guide
-- **🐛 [Bug Findings](./BUGS_FOUND.md)** - Comprehensive list of identified issues and improvements
+- **🐛 [Bug Findings](./findings.md)** - Comprehensive list of identified issues and improvements
 
 ---
 
@@ -177,7 +177,7 @@ This project has identified several bugs and improvement opportunities in the ap
 - Expected vs actual behavior
 - Improvement suggestions
 
-**📋 View the complete findings: [BUGS_FOUND.md](./findings.md)**
+**📋 View the complete findings: [findings.md](./findings.md)**
 
 ---
 
