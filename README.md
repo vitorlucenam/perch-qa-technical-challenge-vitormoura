@@ -1,222 +1,163 @@
-# 🧪 E-commerce QA Automation Project
+# 🧪 QA Engineer – Technical Challenge (48h)
 
-This repository contains a comprehensive test automation solution for an e-commerce application, developed as part of Perch's QA Technical Challenge.
-
----
-
-## 📋 Quick Links
-
-- **📄 [Challenge Instructions](./CHALLENGE_INSTRUCTIONS.md)** - Original challenge requirements and setup guide
-- **🐛 [Bug Findings](./findings.md)** - Comprehensive list of identified issues and improvements
+Welcome! This is a technical challenge for QA Engineer candidates applying to **Perch**.
 
 ---
 
-## 🎯 Project Overview
+## 🎯 Objective
 
-### Challenge Objective
-Create comprehensive test cases for an e-commerce application using Cypress and Cucumber, focusing on:
-- **Functional testing** across all user flows
-- **Bug detection** and documentation
-- **Test automation** with maintainable code structure
+Your mission is to:
 
-### Application Under Test
-A React-based e-commerce platform with the following pages:
-- **Home Page** - Product catalog with sorting functionality
-- **Product Page** - Individual product details and cart functionality
-- **Cart Page** - Shopping cart management
-- **Checkout Flow** - Address → Payment → Success pages
-- **Profile Page** - User information and order history
+- Create as many **test cases** as possible for the different pages of this e-commerce application.
+- Detect and clearly document **bugs, broken flows, or inconsistencies**.
+- Suggest **functional or usability improvements** where relevant.
 
 ---
 
-## 🛠️ Tech Stack
+## 🧰 Technologies to Use
 
-- **🌐 Cypress** - End-to-end testing framework
-- **🥒 Cucumber** - Behavior-driven development with Gherkin syntax
-- **📝 JavaScript** - Test automation language
-- **🎯 Page Object Model** - Test architecture pattern
+You are expected to complete this challenge using the following technologies:
+
+- ✅ Cypress  
+- ✅ Cucumber (Gherkin syntax)  
+- ✅ JavaScript
 
 ---
 
-## 🚀 Getting Started
+## 🛒 Application Overview
 
-### Prerequisites
-- Node.js (v14 or higher)
-- npm or yarn package manager
+This is an e-commerce web application where users can browse products, purchase them, and view their profile and order history. The application consists of the following key pages:
 
-### Installation & Setup
+🔹 **Home Page** (`/`)  
+- Displays a list of available products (name and price)  
+- Each product links to its individual Product Page  
+- Includes sorting functionality  
 
-1. **Clone the repository**
+🔹 **Product Page** (`/product/:id`)  
+- Shows details of a specific product: name, price, description  
+- Allows selection of quantity  
+- Button to add the product to the cart  
+
+🔹 **Cart Page** (`/cart`)  
+- Shows products added to the cart  
+- Allows modifying quantity or removing items  
+- Proceeds to checkout  
+
+🔹 **Address Page** (`/checkout/address`)  
+- Collects shipping and personal information  
+- Fields for name, address, postal code, and phone number  
+
+🔹 **Payment Page** (`/checkout/payment`)  
+- Accepts credit card information  
+- Validates card number, expiration date, and name  
+
+🔹 **Success Page** (`/checkout/success`)  
+- Confirmation screen after successful order placement  
+
+🔹 **Profile Page** (`/profile`)  
+- Displays user information  
+- Shows order history with details for each purchase  
+
+---
+
+## 📋 Submission Instructions
+
+1. **Availability confirmation:**  
+   - Share the day you are available to start the 48-hour challenge.
+
+2. **Challenge start:**  
+   - On the agreed day, we will share with you the URL of the GitHub repository that contains the base project.
+
+3. **DO NOT FORK this repository**  
+   - Instead, **clone it** to your local machine:
+
+     ```bash
+     git clone https://github.com/estefaniaMiceliQA/perch-qa-technical-challenge
+     ```
+
+4. **Create a new public repository in your own GitHub account**  
+   - Name it something like `perch-qa-technical-challenge-yourname`.  
+   - Push the cloned project and your changes there.
+
+5. **Work in a new branch**  
+   - Create a **new branch** with your name (e.g., `name-surname`).  
+   - Do **not** commit directly to `main`.
+
+6. **Commit your work**  
+   - Add your test cases and all documentation.  
+   - **You must include a `findings.md` file (in Markdown format) in the repository** to document any detected issues, bugs, or improvement suggestions.  
+   - ⚠️ **Do not send issues or improvements in a separate document. Only `findings.md` inside the repo will be accepted.**
+
+7. **DO NOT OPEN a Pull Request into THIS repository**  
+   - Keep all changes in your own public repository.  
+   - Do **not** open a Pull Request to this repository.
+
+8. **Notify us**  
+   - Send an email to our team confirming completion.  
+   - Include the **URL to your public repository** and the **branch name**.
+
+---
+
+## ✅ Evaluation Criteria
+
+We will evaluate your submission based on:
+
+- Coverage and relevance of test cases
+- Accuracy in identifying issues
+- Quality and clarity of `findings.md`
+- Code and folder organization
+
+---
+
+## 🛠️ Step-by-Step Guide
+
+1. **Clone the base repository**
+
    ```bash
-   git clone git@github.com:vitorlucenam/perch-qa-technical-challenge-vitormoura.git
-   cd perch-qa-technical-challenge-vitormoura
+   git clone https://github.com/estefaniaMiceliQA/perch-qa-technical-challenge
    ```
 
-2. **Install dependencies**
+2. **Create your own public repository**
+   
+   - On GitHub, create a new public repository under your account.
+
+3. **Push the project to your new repository**
+
    ```bash
-   npm install
-   # or
-   yarn install
+   git remote remove origin
+   git remote add origin https://github.com/<your-username>/qa-ecommerce-challenge-yourname.git
+   git checkout -b name-surname
+   git push -u origin name-surname
    ```
 
-3. **Start the application**
+4. **Install project dependencies**
+   
    ```bash
-   npm start
-   # or
+   yarn
+   ```
+
+5. **Start the web application**
+ 
+   ```bash
    yarn start
    ```
-   The application will be available at `http://localhost:3000`
+   
+6. **Run the tests**
+   
+   - Interactive mode:
+ 
+      ```bash
+      yarn cypress:open
+      ```
 
-### Running Tests
+   - Headless mode:
 
-**Interactive Mode (Cypress UI)**
-```bash
-npm run cypress:open
-# or
-yarn cypress:open
-```
-
-**Headless Mode**
-```bash
-npm test
-# or
-npm run cypress:run
-```
-
+      ```bash
+      yarn cypress run
+      # or
+      yarn test
+      ```
+   
 ---
 
-## 📁 Project Structure
-
-```
-cypress/
-├── fixtures/           # Test data files
-├── integration/        # Feature files and step definitions
-│   ├── *.feature      # Gherkin scenarios
-│   └── step_definitions/ # Cucumber step implementations
-├── pages/             # Page Object Models
-├── plugins/           # Cypress plugins configuration
-└── support/           # Custom commands and utilities
-
-src/                   # React application source code
-├── pages/            # Application pages
-└── data/             # Product data
-```
-
----
-
-## 🧪 Test Coverage
-
-### Implemented Test Suites
-
-**🏠 Homepage Testing**
-- Product catalog display and functionality
-- Sorting mechanisms (price ascending/descending)
-- Product navigation and links
-- UI element validation
-
-**📦 Product Page Testing**  
-- Product information display
-- Quantity selection functionality
-- Add to cart operations
-- Navigation flows
-
-**🛒 Cart Management**
-- Item addition and removal
-- Quantity modifications
-- Subtotal calculations
-- Empty cart scenarios
-- Checkout navigation
-
-**💳 Checkout Flow**
-- **Address Form**: Field validation, data persistence, navigation
-- **Payment Form**: Card validation, form submission, error handling
-- **Success Page**: Order confirmation, navigation options
-
-**🔄 End-to-End Scenarios**
-- Complete purchase flows
-- Multi-item cart scenarios
-- User journey validation
-
-### Test Architecture Features
-
-- **🎭 Page Object Model** - Maintainable and reusable page interactions
-- **🥒 BDD with Cucumber** - Human-readable test scenarios
-- **🔧 Custom Commands** - Cart management and utility functions
-- **📊 Test Data Management** - Fixture files for consistent testing
-- **🏗️ Modular Design** - Organized step definitions and helpers
-
----
-
-## 📊 Key Testing Highlights
-
-### Comprehensive Coverage
-- **50+ test scenarios** covering critical user paths
-- **Cross-browser compatibility** testing
-- **Responsive design** validation
-- **Error handling** and edge cases
-
-### Advanced Test Patterns
-- **Data-driven testing** using Cucumber tables
-- **Dynamic element handling** for cart operations
-- **State management** testing with localStorage
-- **Form validation** across multiple pages
-
-### Quality Assurance Focus
-- **Bug identification** and documentation
-- **Usability testing** insights
-- **Performance considerations**
-- **Accessibility testing** elements
-
----
-
-## 🐛 Issues & Findings
-
-This project has identified several bugs and improvement opportunities in the application. For detailed information about each issue, including:
-- Bug descriptions and severity levels
-- Steps to reproduce
-- Expected vs actual behavior
-- Improvement suggestions
-
-**📋 View the complete findings: [findings.md](./findings.md)**
-
----
-
-## 📈 Project Outcomes
-
-### Achievements
-- ✅ **Comprehensive test automation** framework
-- ✅ **Multiple critical bugs** identified and documented  
-- ✅ **Maintainable test architecture** with Page Object Model
-- ✅ **Clear documentation** and reporting
-- ✅ **Production-ready** test suite
-
-### Key Metrics
-- **6 feature files** with comprehensive scenarios
-- **15+ page object methods** for reliable interactions
-- **100% critical path coverage** for e-commerce flows
-- **Multiple bug categories** identified (UI, functional, usability)
-
----
-
-## 🔧 Configuration
-
-The project includes optimized Cypress configuration for:
-- **Browser settings** and viewport management
-- **Test execution** parameters
-- **Cucumber preprocessing** setup
-- **Video and screenshot** capture
-
----
-
-## 👨‍💻 Development Notes
-
-This test automation project demonstrates:
-- **Industry best practices** in test automation
-- **Scalable architecture** for growing test suites  
-- **Clear separation of concerns** between page objects and tests
-- **Comprehensive documentation** for team collaboration
-- **Bug-focused QA approach** with actionable insights
-
----
-
-*For the original challenge instructions and setup details, see [CHALLENGE_INSTRUCTIONS.md](./CHALLENGE_INSTRUCTIONS.md)*
+Good luck! If you have any questions, feel free to reach out before starting the challenge.
