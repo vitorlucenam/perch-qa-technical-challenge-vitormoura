@@ -79,4 +79,4 @@ class HomePage {
     }
 }
 
-export default new HomePage();
+export default HomePage;

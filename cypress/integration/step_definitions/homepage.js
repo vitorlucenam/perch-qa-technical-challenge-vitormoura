@@ -1,50 +1,52 @@
 import { Given, When, Then, And } from 'cypress-cucumber-preprocessor/steps';
 import HomePage from '../../pages/HomePage';
 
+const homePage = new HomePage();
+
 Given('I am on the homepage', () => {
-    HomePage.visit();
+    homePage.visit();
 });
 
 Then('I should see the main content', () => {
-    HomePage.verifyMainContent();
+    homePage.verifyMainContent();
 });
 
 Then('I should see the full list of products', () => {
-    HomePage.verifyProductsGrid();
+    homePage.verifyProductsGrid();
 });
 
 // Sorting Steps
 Given('the sort button shows {string}', (expectedText) => {
-    HomePage.verifySortButtonText(expectedText);
+    homePage.verifySortButtonText(expectedText);
 });
 
 When('I click the sort price button', () => {
-    HomePage.clickSortButton();
+    homePage.clickSortButton();
 });
 
 When('I click the sort price button again', () => {
-    HomePage.clickSortButton();
+    homePage.clickSortButton();
 });
 
 Then('the products should be sorted by price in ascending order', () => {
-    HomePage.verifyPricesSortedAscending();
+    homePage.verifyPricesSortedAscending();
 });
 
 Then('the products should be sorted by price in descending order', () => {
-    HomePage.verifyPricesSortedDescending();
+    homePage.verifyPricesSortedDescending();
 });
 
 Then('the sort button should show {string}', (expectedText) => {
-    HomePage.verifySortButtonText(expectedText);
+    homePage.verifySortButtonText(expectedText);
 });
 
 // Navigation Steps
 Given('I can see the product list', () => {
-    HomePage.verifyProductsGrid();
+    homePage.verifyProductsGrid();
 });
 
 When('I click on a {string} button', (buttonText) => {
-    HomePage.clickViewDetailsButton(0);
+    homePage.clickViewDetailsButton(0);
 });
 
 Then('I should be redirected to the product detail page', () => {
@@ -57,39 +59,39 @@ Then('I should see the product information', () => {
 
 // Product Display Steps
 Then('I should see a list of products', () => {
-    HomePage.verifyProductsGrid();
-    HomePage.verifyAtLeastOneProduct();
+    homePage.verifyProductsGrid();
+    homePage.verifyAtLeastOneProduct();
 });
 
 Then('each product should display an image', () => {
-    HomePage.elements.productImages().should('be.visible');
+    homePage.elements.productImages().should('be.visible');
 });
 
 Then('each product should display a title', () => {
-    HomePage.elements.productTitles().should('be.visible');
+    homePage.elements.productTitles().should('be.visible');
 });
 
 Then('each product should display a price', () => {
-    HomePage.elements.productPrices().should('be.visible');
+    homePage.elements.productPrices().should('be.visible');
 });
 
 // Loading and Count Steps
 Then('the product list should be visible', () => {
-    HomePage.verifyProductsGrid();
+    homePage.verifyProductsGrid();
 });
 
 Then('the products should be displayed in the default order', () => {
-    HomePage.verifySortButtonText('Sort by Price ↑');
+    homePage.verifySortButtonText('Sort by Price ↑');
 });
 
 When('the product list loads', () => {
-    HomePage.verifyProductsGrid();
+    homePage.verifyProductsGrid();
 });
 
 Then('I should see exactly {int} products', (expectedCount) => {
-    HomePage.verifyProductCount(expectedCount);
+    homePage.verifyProductCount(expectedCount);
 });
 
 Then('all products should be displayed', () => {
-    HomePage.verifyProductElements();
+    homePage.verifyProductElements();
 });
