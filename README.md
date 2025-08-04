@@ -48,7 +48,7 @@ A React-based e-commerce platform with the following pages:
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone git@github.com:vitorlucenam/perch-qa-technical-challenge-vitormoura.git
    cd perch-qa-technical-challenge-vitormoura
    ```
 
