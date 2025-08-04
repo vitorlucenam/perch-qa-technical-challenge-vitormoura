@@ -10,7 +10,6 @@ class CartPage {
         loadingState: () => cy.get('[data-testid="loading"]')
     }
 
-    // Dynamic selectors for cart items
     getCartItem(itemId) {
         return cy.get(`[data-testid="cart-item-${itemId}"]`);
     }
@@ -27,12 +26,10 @@ class CartPage {
         return cy.get(`[data-testid="remove-${itemId}"]`);
     }
 
-    // Navigation methods
     visit() {
         cy.visit('/cart');
     }
 
-    // Page validation methods
     verifyCartPage() {
         this.elements.cartPage().should('be.visible');
     }
@@ -54,7 +51,6 @@ class CartPage {
         this.elements.loadingState().should('be.visible');
     }
 
-    // Cart item validation methods
     verifyCartItemExists(itemId) {
         this.getCartItem(itemId).should('be.visible');
     }
@@ -71,7 +67,6 @@ class CartPage {
         this.getQuantitySelect(itemId).should('have.value', expectedQuantity.toString());
     }
 
-    // Cart item interaction methods
     updateItemQuantity(itemId, newQuantity) {
         this.getQuantitySelect(itemId).select(newQuantity.toString());
     }
@@ -88,7 +83,6 @@ class CartPage {
         return this.getItemPrice(itemId).invoke('text');
     }
 
-    // Cart summary methods
     verifyCartSummary() {
         this.elements.cartSummary().should('be.visible');
     }
@@ -101,7 +95,6 @@ class CartPage {
         return this.elements.subtotal().invoke('text');
     }
 
-    // Navigation methods
     continueShopping() {
         this.elements.continueShoppingBtn().click();
     }
@@ -122,7 +115,6 @@ class CartPage {
         this.elements.continueShoppingBtn().should('be.visible').and('be.enabled');
     }
 
-    // Cart state methods
     getCartItemCount() {
         return this.elements.cartItemsContainer().find('[data-testid^="cart-item-"]').its('length');
     }
@@ -141,7 +133,6 @@ class CartPage {
         this.verifyCartHasItems();
     }
 
-    // Multiple items operations
     removeAllItems() {
         this.elements.cartItemsContainer().find('[data-testid^="remove-"]').each(($removeBtn) => {
             cy.wrap($removeBtn).click();
@@ -160,7 +151,6 @@ class CartPage {
         });
     }
 
-    // Cart calculation methods
     calculateExpectedSubtotal(items) {
         return items.reduce((total, item) => {
             return total + (item.price * item.quantity);
@@ -172,7 +162,6 @@ class CartPage {
         this.verifySubtotal(`$${expectedTotal.toFixed(2)}`);
     }
 
-    // Wait methods
     waitForCartToLoad() {
         this.verifyCartPage();
         this.verifyLoadingNotVisible();
@@ -183,7 +172,6 @@ class CartPage {
         this.verifyLoadingNotVisible();
     }
 
-    // Comprehensive cart validation
     verifyCompleteCartState(expectedItems) {
         this.verifyCartPage();
         this.verifyLoadingNotVisible();

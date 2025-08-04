@@ -7,7 +7,6 @@ const cartPage = new CartPage();
 const productPage = new ProductPage();
 const homePage = new HomePage();
 
-// Helper method to add products to cart via UI
 const addProductToCartViaUI = (productId, quantity = 1) => {
     // Navigate to homepage first
     homePage.visit();
@@ -22,24 +21,14 @@ const addProductToCartViaUI = (productId, quantity = 1) => {
     // We should now be on the cart page with the item
 };
 
-// Helper method to add multiple products via UI
 const addMultipleProductsViaUI = (products) => {
     // Add first product
     const firstProduct = products[0];
-    cy.log(`Adding first product: ID ${firstProduct.id}, Quantity ${firstProduct.quantity}`);
     addProductToCartViaUI(firstProduct.id, firstProduct.quantity);
-    
-    // Debug: Check cart after first product
-    cy.window().then((win) => {
-        const cartAfterFirst = win.localStorage.getItem('cart');
-        cy.log('Cart after first product:', cartAfterFirst);
-    });
     
     // Add remaining products one by one
     for (let i = 1; i < products.length; i++) {
         const product = products[i];
-        cy.log(`Adding product ${i + 1}: ID ${product.id}, Quantity ${product.quantity}`);
-        
         // Go back to homepage using Continue Shopping button (proper navigation)
         cy.get('[data-testid="continue-shopping"]').first().click();
         
@@ -48,18 +37,11 @@ const addMultipleProductsViaUI = (products) => {
         productPage.selectQuantity(product.quantity);
         productPage.addToCart(); // Redirects back to cart
         
-        // Debug: Check cart after this product
-        cy.window().then((win) => {
-            const cartAfterProduct = win.localStorage.getItem('cart');
-            cy.log(`Cart after product ${i + 1}:`, cartAfterProduct);
-        });
-        
         // Verify we're on cart page
         cy.url().should('include', '/cart');
     }
 };
 
-// Background Steps
 Given('I am on the cart page', () => {
     // Only visit if we're not already setting up cart state in the scenario
     cy.url().then((url) => {
@@ -69,7 +51,6 @@ Given('I am on the cart page', () => {
     });
 });
 
-// Empty Cart Steps
 Given('the cart is empty', () => {
     // Ensure cart is empty by clearing localStorage BEFORE visiting page
     cy.clearLocalStorage();
@@ -93,7 +74,6 @@ Then('I should not see the proceed to checkout button', () => {
     cartPage.elements.proceedToCheckoutBtn().should('not.exist');
 });
 
-// Cart with Items Steps - All using UI approach
 Given('the cart contains items', () => {
     addMultipleProductsViaUI([
         { id: 1, quantity: 2 },
@@ -139,27 +119,10 @@ Given('the cart contains multiple items:', (dataTable) => {
         quantity: parseInt(row.quantity)
     }));
     
-    // Debug: Log the products we're trying to add
-    cy.log('Adding products:', JSON.stringify(products));
-    
     addMultipleProductsViaUI(products);
-    
-    // Debug: Check localStorage after adding
-    cy.window().then((win) => {
-        const cartData = win.localStorage.getItem('cart');
-        cy.log('Cart in localStorage:', cartData);
-    });
     
     products.forEach(product => {
         cartPage.verifyCartItemExists(product.id.toString());
-        
-        // Debug: Log what quantity we're checking for
-        cy.log(`Checking quantity for item ${product.id}: expecting ${product.quantity}`);
-        
-        // Check the actual quantity value in the DOM
-        cy.get(`[data-testid="quantity-${product.id}"]`).then($select => {
-            cy.log(`Actual quantity value in DOM: ${$select.val()}`);
-        });
         
         cartPage.verifyItemQuantity(product.id.toString(), product.quantity.toString());
     });
@@ -201,7 +164,6 @@ Then('I should see the remove button for product {string}', (itemId) => {
     cartPage.getRemoveButton(itemId).should('be.visible');
 });
 
-// Quantity Modification Steps
 When('I change the quantity of item {string} to {string}', (itemId, newQuantity) => {
     cartPage.updateItemQuantity(itemId, newQuantity);
 });
@@ -219,7 +181,6 @@ Then('the cart should still contain the item {string}', (itemId) => {
     cartPage.verifyCartItemExists(itemId);
 });
 
-// Item Removal Steps
 When('I click the remove button for item {string}', (itemId) => {
     cartPage.removeItem(itemId);
 });
@@ -258,7 +219,6 @@ Then('the cart should contain {string} item', (expectedCount) => {
     cartPage.verifyCartItemCount(parseInt(expectedCount));
 });
 
-// Subtotal Calculation Steps
 Then('the subtotal should show {string}', (expectedAmount) => {
     cartPage.verifySubtotal(expectedAmount);
 });
@@ -267,7 +227,6 @@ Given('the subtotal shows {string}', (expectedAmount) => {
     cartPage.verifySubtotal(expectedAmount);
 });
 
-// Checkout Navigation Steps
 Given('the proceed to checkout button is enabled', () => {
     cartPage.verifyProceedToCheckoutButton();
 });
@@ -280,7 +239,6 @@ Then('I should be redirected to the checkout page', () => {
     cy.url().should('include', '/checkout');
 });
 
-// Continue Shopping Navigation Steps
 When('I click the continue shopping button', () => {
     // Fix: There are 2 continue shopping buttons, click the first one
     cy.get('[data-testid="continue-shopping"]').first().click();
@@ -291,7 +249,6 @@ Then('I should be redirected to the homepage', () => {
     cy.url().should('not.include', '/cart');
 });
 
-// Loading States Steps
 Then('the loading indicator should not be visible', () => {
     cartPage.verifyLoadingNotVisible();
 });
@@ -304,12 +261,10 @@ Then('the quantity change should be applied immediately', () => {
     cartPage.verifyLoadingNotVisible();
 });
 
-// Multiple Items Management Steps
 When('I change the quantity of item {string} to {string}', (itemId, newQuantity) => {
     cartPage.updateItemQuantity(itemId, newQuantity);
 });
 
-// Edge Cases Steps
 Then('the quantity selector should show maximum value {string}', (maxValue) => {
     // Assuming we're checking the first item for simplicity
     cartPage.getQuantitySelect('1').find('option').last().should('have.value', maxValue);
@@ -327,7 +282,6 @@ Then('the subtotal should remain correct', () => {
     cartPage.elements.subtotal().should('be.visible').and('not.be.empty');
 });
 
-// Additional validation steps for complex scenarios
 Then('I should see the cart item with id {string}', (itemId) => {
     cartPage.verifyCartItemExists(itemId);
 });

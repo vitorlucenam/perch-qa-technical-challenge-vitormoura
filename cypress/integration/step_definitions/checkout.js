@@ -13,14 +13,12 @@ const successPage = new SuccessPage();
 const homePage = new HomePage();
 const productPage = new ProductPage();
 
-// Configure Cypress to handle browser validation in English
 Cypress.on('window:before:load', (win) => {
     // Set browser language to English to avoid localization issues
     Object.defineProperty(win.navigator, 'language', { value: 'en-US' });
     Object.defineProperty(win.navigator, 'languages', { value: ['en-US', 'en'] });
 });
 
-// Helper to add items to cart for checkout testing
 const addItemsToCart = () => {
     homePage.visit();
     cy.get('[data-testid="view-product-1"]').click();
@@ -28,7 +26,6 @@ const addItemsToCart = () => {
     productPage.addToCart();
 };
 
-// Helper to add multiple items to cart
 const addMultipleItemsToCart = () => {
     // Add first item
     homePage.visit();
@@ -43,7 +40,6 @@ const addMultipleItemsToCart = () => {
     productPage.addToCart();
 };
 
-// Default test data
 const defaultAddressData = {
     firstName: 'John',
     email: 'john@example.com',
@@ -62,7 +58,6 @@ const defaultPaymentData = {
     cvv: '123'
 };
 
-// Background Steps
 Given('I have items in my cart', () => {
     addItemsToCart();
     cartPage.verifyCartHasItems();
@@ -88,7 +83,6 @@ Given('I have an empty cart', () => {
     cartPage.verifyEmptyCart();
 });
 
-// Missing step definition - adjusted for real cart totals
 When('I have multiple items in cart with total {string}', (expectedTotal) => {
     addMultipleItemsToCart();
     // The actual total will be $309.97 (2x$79.99 + 1x$149.99), not $229.98
@@ -96,7 +90,6 @@ When('I have multiple items in cart with total {string}', (expectedTotal) => {
     cartPage.verifySubtotal('$309.97');
 });
 
-// Address Form Steps - OPTIMIZED
 When('I fill complete address form with valid data', () => {
     addressPage.fillAddressForm(defaultAddressData);
 });
@@ -130,7 +123,6 @@ When('I try to continue to payment', () => {
     addressPage.clickContinueToPayment();
 });
 
-// Address Form Validation Steps - SIMPLIFIED FOR BROWSER VALIDATION
 Then('the continue button should be enabled', () => {
     addressPage.verifyContinueButtonEnabled();
 });
@@ -175,7 +167,6 @@ Then('my address data should be preserved', () => {
     addressPage.verifyFieldEmpty('street');
 });
 
-// Payment Form Steps - OPTIMIZED
 Given('I have completed the address form', () => {
     addressPage.fillAddressForm(defaultAddressData);
     addressPage.clickContinueToPayment();
@@ -223,7 +214,6 @@ When('I click the back to address button', () => {
     paymentPage.clickBackToAddress();
 });
 
-// Payment Form Validation Steps - SIMPLIFIED
 Then('I should be redirected to the success page', () => {
     // Validate by success message instead of URL
     cy.contains('Thank You for Your Purchase!').should('be.visible');
@@ -245,7 +235,6 @@ Then('I should see appropriate error feedback', () => {
     cy.url().should('include', '/checkout/payment');
 });
 
-// Complete Checkout Flow Steps - STREAMLINED
 When('I proceed through complete checkout with valid data', () => {
     cartPage.proceedToCheckout();
     addressPage.fillAddressForm(defaultAddressData);
@@ -269,7 +258,6 @@ When('I complete checkout process', () => {
     paymentPage.clickPlaceOrder();
 });
 
-// Success Page Steps - CONSOLIDATED  
 Given('I have completed a successful order', () => {
     addItemsToCart();
     cartPage.proceedToCheckout();
@@ -300,7 +288,6 @@ Then('I should see order confirmation details', () => {
     successPage.verifyOrderNumber();
 });
 
-// Step definition removed as it was duplicated above
 
 Then('the order should contain correct items and total', () => {
     // Success page is displayed - this validates the checkout worked
@@ -328,7 +315,6 @@ Then('the order should be successful', () => {
     cy.contains('Thank You for Your Purchase!').should('be.visible');
 });
 
-// Navigation Steps - SIMPLIFIED
 Then('I should be redirected to the cart page', () => {
     cy.url().should('include', '/cart');
 });
@@ -342,7 +328,6 @@ Then('I should remain on the address page', () => {
     addressPage.verifyPageLoaded();
 });
 
-// Error Handling Steps - STREAMLINED  
 When('I try to access checkout directly', () => {
     cy.visit('/checkout/address');
 });
@@ -355,7 +340,6 @@ Then('I should see empty cart message', () => {
     cartPage.verifyEmptyCart();
 });
 
-// Performance Steps - SIMPLIFIED
 When('I navigate through complete checkout flow', () => {
     cartPage.proceedToCheckout();
     addressPage.waitForPageLoad();
@@ -380,7 +364,6 @@ Then('order processing should complete successfully', () => {
     cy.contains('Thank You for Your Purchase!', { timeout: 10000 }).should('be.visible');
 });
 
-// Additional missing steps - focus on main success message
 Then('I should see order success page with all elements:', (dataTable) => {
     // Success page displays the main success message - this validates checkout completion
     cy.contains('Thank You for Your Purchase!').should('be.visible');
@@ -421,7 +404,6 @@ When('I navigate through complete checkout flow', () => {
     paymentPage.waitForPageLoad();
 });
 
-// Missing steps for "Checkout preserves data during navigation"
 When('I fill partial address information', () => {
     addressPage.fillFirstName('John');
     addressPage.fillEmail('john@example.com');

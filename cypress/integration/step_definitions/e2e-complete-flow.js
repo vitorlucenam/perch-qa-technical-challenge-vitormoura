@@ -11,7 +11,6 @@ const cartPage = new CartPage();
 const addressPage = new AddressPage();
 const paymentPage = new PaymentPage();
 
-// Simple test data
 const testAddress = {
     firstName: 'John',
     email: 'john@example.com',
@@ -30,7 +29,6 @@ const testPayment = {
     cvv: '123'
 };
 
-// Background Steps
 Given('I am on the homepage', () => {
     homePage.visit();
     homePage.verifyMainContent();
@@ -41,7 +39,6 @@ Given('I start with an empty cart', () => {
     homePage.visit();
 });
 
-// Product Selection Steps
 When('I view product {string} and add it to cart', (productId) => {
     cy.get(`[data-testid="view-product-${productId}"]`).click();
     productPage.selectQuantity(1);
@@ -67,12 +64,10 @@ When('I add a product to cart', () => {
     productPage.addToCart();
 });
 
-// Cart Verification Steps
 Then('I should see the product in my cart', () => {
     cartPage.verifyCartHasItems();
 });
 
-// Checkout Steps - Simplified
 When('I proceed to checkout with valid data', () => {
     cartPage.proceedToCheckout();
     addressPage.fillAddressForm(testAddress);
@@ -103,7 +98,6 @@ When('I complete the order', () => {
     paymentPage.clickPlaceOrder();
 });
 
-// Success Validation Steps - Simple and Reliable
 Then('I should see successful order completion', () => {
     // Main validation - the success message indicates end-to-end flow worked
     cy.contains('Thank You for Your Purchase!').should('be.visible');

@@ -46,7 +46,6 @@ class AddressPage {
         this.elements.continueBtn().should('be.visible');
     }
 
-    // Form filling methods
     fillFirstName(firstName) {
         this.elements.firstnameInput().clear().type(firstName);
     }
@@ -79,7 +78,6 @@ class AddressPage {
         this.elements.countryInput().clear().type(country);
     }
 
-    // Complete form filling method
     fillAddressForm(addressData) {
         const {
             firstName = 'John',
@@ -102,7 +100,6 @@ class AddressPage {
         this.fillCountry(country);
     }
 
-    // Form validation methods
     verifyFirstName(expectedValue) {
         this.elements.firstnameInput().should('have.value', expectedValue);
     }
@@ -135,7 +132,6 @@ class AddressPage {
         this.elements.countryInput().should('have.value', expectedValue);
     }
 
-    // Form validation - verify all fields are filled
     verifyFormFilled(addressData) {
         const {
             firstName = 'John',
@@ -158,7 +154,6 @@ class AddressPage {
         this.verifyCountry(country);
     }
 
-    // Load saved address data from localStorage
     loadSavedAddressData() {
         cy.window().then((win) => {
             const savedData = win.localStorage.getItem('addressData');
@@ -177,7 +172,6 @@ class AddressPage {
         });
     }
 
-    // Field validation methods
     verifyFieldRequired(fieldName) {
         const fieldMap = {
             'firstname': this.elements.firstnameInput,
@@ -214,7 +208,6 @@ class AddressPage {
         }
     }
 
-    // Navigation methods
     clickBackToCart() {
         this.elements.backToCartBtn().click();
     }
@@ -223,7 +216,6 @@ class AddressPage {
         this.elements.continueBtn().click();
     }
 
-    // Button state validation
     verifyContinueButtonEnabled() {
         this.elements.continueBtn().should('be.enabled');
     }
@@ -232,19 +224,16 @@ class AddressPage {
         this.elements.continueBtn().should('be.disabled');
     }
 
-    // Form submission and navigation
     submitAddressForm(addressData = {}) {
         this.fillAddressForm(addressData);
         this.clickContinueToPayment();
     }
 
-    // Wait for page transitions
     waitForPageLoad() {
         this.elements.page().should('be.visible');
         this.elements.form().should('be.visible');
     }
 
-    // Validation error methods (if the application shows validation errors)
     verifyValidationError(fieldName, expectedError) {
         // Assuming validation errors appear near the field with a specific pattern
         cy.get(`[data-testid="${fieldName}-input"]`)
@@ -257,7 +246,6 @@ class AddressPage {
         cy.get('[data-testid*="error"]').should('not.exist');
     }
 
-    // Clear form method
     clearForm() {
         this.elements.firstnameInput().clear();
         this.elements.emailInput().clear();
@@ -269,7 +257,6 @@ class AddressPage {
         this.elements.countryInput().clear();
     }
 
-    // Verify navigation success
     verifyNavigationToPayment() {
         cy.url().should('include', '/checkout/payment');
     }

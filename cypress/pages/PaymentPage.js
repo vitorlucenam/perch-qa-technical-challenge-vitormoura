@@ -38,7 +38,6 @@ class PaymentPage {
         this.elements.placeOrderBtn().should('be.visible');
     }
 
-    // Form filling methods
     fillCardHolder(cardHolder) {
         this.elements.cardholderInput().clear().type(cardHolder);
     }
@@ -55,7 +54,6 @@ class PaymentPage {
         this.elements.cvvInput().clear().type(cvv);
     }
 
-    // Complete form filling method
     fillPaymentForm(paymentData) {
         const {
             cardHolder = 'John Doe',
@@ -70,7 +68,6 @@ class PaymentPage {
         this.fillCVV(cvv);
     }
 
-    // Form validation methods
     verifyCardHolder(expectedValue) {
         this.elements.cardholderInput().should('have.value', expectedValue);
     }
@@ -87,7 +84,6 @@ class PaymentPage {
         this.elements.cvvInput().should('have.value', expectedValue);
     }
 
-    // Form validation - verify all fields are filled
     verifyFormFilled(paymentData) {
         const {
             cardHolder = 'John Doe',
@@ -102,7 +98,6 @@ class PaymentPage {
         this.verifyCVV(cvv);
     }
 
-    // Field validation methods
     verifyFieldRequired(fieldName) {
         const fieldMap = {
             'cardholder': this.elements.cardholderInput,
@@ -131,7 +126,6 @@ class PaymentPage {
         }
     }
 
-    // Field type and format validation
     verifyCardNumberFormat() {
         // Verify card number field accepts only numbers and formats correctly
         this.elements.cardnumberInput().should('have.attr', 'type', 'text');
@@ -149,7 +143,6 @@ class PaymentPage {
         this.elements.cvvInput().should('have.attr', 'maxlength', '4');
     }
 
-    // Test different card types
     fillValidVisaCard() {
         this.fillPaymentForm({
             cardHolder: 'John Doe',
@@ -177,7 +170,6 @@ class PaymentPage {
         });
     }
 
-    // Invalid card data for negative testing
     fillInvalidCardNumber() {
         this.fillPaymentForm({
             cardHolder: 'Test User',
@@ -196,7 +188,6 @@ class PaymentPage {
         });
     }
 
-    // Navigation methods
     clickBackToAddress() {
         this.elements.backToAddressBtn().click();
     }
@@ -205,7 +196,6 @@ class PaymentPage {
         this.elements.placeOrderBtn().click();
     }
 
-    // Button state validation
     verifyPlaceOrderButtonEnabled() {
         this.elements.placeOrderBtn().should('be.enabled');
     }
@@ -214,19 +204,16 @@ class PaymentPage {
         this.elements.placeOrderBtn().should('be.disabled');
     }
 
-    // Form submission and navigation
     submitPaymentForm(paymentData = {}) {
         this.fillPaymentForm(paymentData);
         this.clickPlaceOrder();
     }
 
-    // Wait for page transitions
     waitForPageLoad() {
         this.elements.page().should('be.visible');
         this.elements.form().should('be.visible');
     }
 
-    // Validation error methods
     verifyValidationError(fieldName, expectedError) {
         // Assuming validation errors appear near the field with a specific pattern
         cy.get(`[data-testid="${fieldName}-input"]`)
@@ -239,7 +226,6 @@ class PaymentPage {
         cy.get('[data-testid*="error"]').should('not.exist');
     }
 
-    // Card number masking validation
     verifyCardNumberMasked() {
         // Check if card number is masked (showing only last 4 digits)
         this.elements.cardnumberInput().then($input => {
@@ -250,13 +236,11 @@ class PaymentPage {
         });
     }
 
-    // Security validations
     verifyCVVMasked() {
         // Verify CVV field is masked/password type for security
         this.elements.cvvInput().should('have.attr', 'type').and('match', /(password|text)/);
     }
 
-    // Clear form method
     clearForm() {
         this.elements.cardholderInput().clear();
         this.elements.cardnumberInput().clear();
@@ -264,7 +248,6 @@ class PaymentPage {
         this.elements.cvvInput().clear();
     }
 
-    // Form interaction validations
     verifyFieldFocus(fieldName) {
         const fieldMap = {
             'cardholder': this.elements.cardholderInput,
@@ -279,7 +262,6 @@ class PaymentPage {
         }
     }
 
-    // Verify navigation success
     verifyNavigationToAddress() {
         cy.url().should('include', '/checkout/address');
     }
@@ -289,7 +271,6 @@ class PaymentPage {
         cy.url().should('include', '/order-confirmation');
     }
 
-    // Order summary validation (if payment page shows order summary)
     verifyOrderSummaryVisible() {
         cy.get('[data-testid="order-summary"]').should('be.visible');
     }
@@ -298,7 +279,6 @@ class PaymentPage {
         cy.get('[data-testid="order-total"]').should('contain.text', expectedTotal);
     }
 
-    // Loading states
     verifyLoadingState() {
         cy.get('[data-testid="loading"]').should('be.visible');
     }
@@ -307,7 +287,6 @@ class PaymentPage {
         cy.get('[data-testid="loading"]').should('not.exist');
     }
 
-    // Payment processing validation
     verifyPaymentProcessing() {
         this.elements.placeOrderBtn().should('contain.text', 'Processing...').and('be.disabled');
     }

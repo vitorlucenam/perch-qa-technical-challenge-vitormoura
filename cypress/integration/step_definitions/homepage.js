@@ -15,7 +15,6 @@ Then('I should see the full list of products', () => {
     homePage.verifyProductsGrid();
 });
 
-// Sorting Steps
 Given('the sort button shows {string}', (expectedText) => {
     homePage.verifySortButtonText(expectedText);
 });
@@ -40,7 +39,6 @@ Then('the sort button should show {string}', (expectedText) => {
     homePage.verifySortButtonText(expectedText);
 });
 
-// Navigation Steps
 Given('I can see the product list', () => {
     homePage.verifyProductsGrid();
 });
@@ -57,7 +55,6 @@ Then('I should see the product information', () => {
     cy.get('[data-testid="product-detail-page"]').should('be.visible');
 });
 
-// Product Display Steps
 Then('I should see a list of products', () => {
     homePage.verifyProductsGrid();
     homePage.verifyAtLeastOneProduct();
@@ -75,7 +72,6 @@ Then('each product should display a price', () => {
     homePage.elements.productPrices().should('be.visible');
 });
 
-// Loading and Count Steps
 Then('the product list should be visible', () => {
     homePage.verifyProductsGrid();
 });

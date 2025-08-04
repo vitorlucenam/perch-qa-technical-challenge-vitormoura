@@ -5,7 +5,6 @@ import HomePage from '../../pages/HomePage';
 const productPage = new ProductPage();
 const homePage = new HomePage();
 
-// Background and Navigation Steps
 Given('I can see the product list', () => {
     homePage.verifyProductsGrid();
 });
@@ -27,7 +26,6 @@ Given('I navigate directly to a product page', () => {
     productPage.visit('1');
 });
 
-// Product Details Viewing Steps
 Then('I should see the product title', () => {
     productPage.verifyProductTitle();
 });
@@ -76,7 +74,6 @@ Then('the product description should be visible', () => {
     productPage.verifyProductDescription();
 });
 
-// Quantity Selection Steps
 When('I select quantity {string} from the dropdown', (quantity) => {
     productPage.selectQuantity(quantity);
 });
@@ -107,7 +104,6 @@ Then('the quantity dropdown should have options from 1 to 5', () => {
     productPage.elements.quantitySelector().find('option').last().should('have.value', '5');
 });
 
-// Add to Cart Steps
 When('I click the add to cart button', () => {
     productPage.addToCart();
 });
@@ -124,9 +120,6 @@ Then('the add to cart button should be enabled', () => {
     productPage.verifyAddToCartButtonEnabled();
 });
 
-// Cart Navigation Steps - removed obsolete steps since cart navigation happens automatically
-
-// Information Validation Steps
 Then('the product price should be displayed in a valid currency format', () => {
     productPage.elements.productPrice().should('contain.text', '$');
     productPage.elements.productPrice().invoke('text').should('match', /^\$\d+\.\d{2}$/);
@@ -179,4 +172,3 @@ Then('there should be no error messages displayed', () => {
     cy.get('.error').should('not.exist');
 });
 
-// Removed cart count validation as it's not part of current implementation

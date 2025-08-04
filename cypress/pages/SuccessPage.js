@@ -11,7 +11,6 @@ class SuccessPage {
         cy.visit('/checkout/success');
     }
 
-    // Page verification methods
     verifyPageLoaded() {
         this.elements.page().should('be.visible');
     }
@@ -33,7 +32,6 @@ class SuccessPage {
         this.elements.orderNumber().should('exist').and('be.visible');
     }
 
-    // Order number validation methods
     verifyOrderNumberFormat() {
         this.elements.orderNumber().should('be.visible').then($element => {
             const orderNumber = $element.text().trim();
@@ -50,7 +48,6 @@ class SuccessPage {
         this.elements.orderNumber().should('contain.text', expectedOrderNumber);
     }
 
-    // Navigation button verification methods
     verifyContinueShoppingButton() {
         this.elements.continueShoppingBtn().should('be.visible').and('be.enabled');
     }
@@ -64,7 +61,6 @@ class SuccessPage {
         this.verifyViewOrdersButton();
     }
 
-    // Button text verification
     verifyContinueShoppingButtonText(expectedText = 'Continue Shopping') {
         this.elements.continueShoppingBtn().should('contain.text', expectedText);
     }
@@ -73,7 +69,6 @@ class SuccessPage {
         this.elements.viewOrdersBtn().should('contain.text', expectedText);
     }
 
-    // Navigation methods
     clickContinueShopping() {
         this.elements.continueShoppingBtn().click();
     }
@@ -82,7 +77,6 @@ class SuccessPage {
         this.elements.viewOrdersBtn().click();
     }
 
-    // Navigation verification methods
     verifyNavigationToHomepage() {
         cy.url().should('include', '/');
         cy.url().should('not.include', '/order-success');
@@ -92,7 +86,6 @@ class SuccessPage {
         cy.url().should('include', '/orders');
     }
 
-    // Complete navigation flow methods
     continueShoppingAndVerify() {
         this.clickContinueShopping();
         this.verifyNavigationToHomepage();
@@ -103,7 +96,6 @@ class SuccessPage {
         this.verifyNavigationToOrders();
     }
 
-    // Order information validation methods
     verifyOrderInfoContains(expectedText) {
         this.elements.orderInfo().should('contain.text', expectedText);
     }
@@ -120,7 +112,6 @@ class SuccessPage {
         this.elements.orderInfo().should('contain.text', 'Thank you');
     }
 
-    // Complete page validation
     verifySuccessPageComplete() {
         this.verifyPageLoaded();
         this.verifyOrderInfo();
@@ -128,7 +119,6 @@ class SuccessPage {
         this.verifyAllNavigationButtons();
     }
 
-    // Order details validation (if success page shows order details)
     verifyOrderSummaryVisible() {
         cy.get('[data-testid="order-summary"]').should('be.visible');
     }
@@ -145,7 +135,6 @@ class SuccessPage {
         cy.get('[data-testid="delivery-info"]').should('be.visible');
     }
 
-    // Wait methods for page loading
     waitForPageLoad() {
         this.elements.page().should('be.visible');
         this.elements.orderInfo().should('be.visible');
@@ -158,7 +147,6 @@ class SuccessPage {
         this.waitForPageLoad();
     }
 
-    // Accessibility validation methods
     verifyPageAccessibility() {
         // Check for proper heading structure
         this.elements.page().find('h1').should('exist');
@@ -172,7 +160,6 @@ class SuccessPage {
         this.elements.orderNumber().should('have.attr', 'aria-label');
     }
 
-    // Print/Email functionality (if available)
     verifyPrintOrderButton() {
         cy.get('[data-testid="print-order"]').should('be.visible');
     }
@@ -189,12 +176,10 @@ class SuccessPage {
         cy.get('[data-testid="email-receipt"]').click();
     }
 
-    // Social sharing (if available)
     verifySocialSharingButtons() {
         cy.get('[data-testid="share-order"]').should('be.visible');
     }
 
-    // Order tracking (if available)
     verifyTrackingInfo() {
         cy.get('[data-testid="tracking-info"]').should('be.visible');
     }
@@ -203,7 +188,6 @@ class SuccessPage {
         cy.get('[data-testid="tracking-number"]').should('be.visible').and('not.be.empty');
     }
 
-    // Customer support links
     verifyContactSupportLink() {
         cy.get('[data-testid="contact-support"]').should('be.visible');
     }
@@ -212,7 +196,6 @@ class SuccessPage {
         cy.get('[data-testid="help-center"]').should('be.visible');
     }
 
-    // Validation for different order states
     verifyOrderProcessingState() {
         this.elements.orderInfo().should('contain.text', 'processing');
     }
@@ -225,19 +208,16 @@ class SuccessPage {
         this.elements.orderInfo().should('contain.text', 'shipped');
     }
 
-    // Error state validation
     verifyNoOrderNumberError() {
         this.elements.orderNumber().should('not.contain.text', 'Error');
         this.elements.orderNumber().should('not.contain.text', 'N/A');
     }
 
-    // Loading state validation
     verifyLoadingComplete() {
         cy.get('[data-testid="loading"]').should('not.exist');
         this.verifyPageLoaded();
     }
 
-    // URL validation
     verifySuccessPageURL() {
         cy.url().should('include', '/order-success');
     }
@@ -246,19 +226,16 @@ class SuccessPage {
         cy.url().should('match', /\/order-success(\?.*)?$/);
     }
 
-    // Page title validation
     verifyPageTitle() {
         cy.title().should('contain', 'Order Success');
     }
 
-    // Meta information validation
     verifySuccessPageMeta() {
         this.verifyPageTitle();
         this.verifySuccessPageURL();
         this.verifyPageLoaded();
     }
 
-    // Complete success flow validation
     verifyCompleteSuccessFlow() {
         this.verifySuccessPageMeta();
         this.verifySuccessPageComplete();

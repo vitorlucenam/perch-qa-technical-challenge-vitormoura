@@ -1,14 +1,3 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-
-// Custom cart management commands using real application selectors
 
 /**
  * Add multiple products to cart via localStorage manipulation
@@ -44,8 +33,6 @@ Cypress.Commands.add('addMultipleProductsToCart', (products) => {
     // Set cart in localStorage
     cy.window().then((win) => {
         win.localStorage.setItem('cart', JSON.stringify(cartItems));
-        // Debug log
-        console.log('Cart set in localStorage:', JSON.stringify(cartItems));
     });
     
     // Wait a bit for localStorage to be set
